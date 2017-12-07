@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.tactfactory.tasker.dao.interfaces.base.IBaseDAO;
 import com.tactfactory.tasker.managers.interfaces.base.IBaseManager;
 import com.tactfactory.tasker.models.base.BaseEntity;
 
@@ -48,11 +49,13 @@ public abstract class BaseController <T extends BaseEntity> {
 		this.clazz = clazz;
 	}
 
+	@RequestMapping(value=ROUTE_CREATE, method=RequestMethod.POST)
 	public T insertItem(@ModelAttribute T item){
 		baseCrud.create(item);
 		return item;
 	}
 
+	@RequestMapping(value=ROUTE_UPDATE, method=RequestMethod.PUT)
 	public String updateItem(@ModelAttribute T item){
 		try {
 			baseCrud.update(item);
@@ -62,6 +65,7 @@ public abstract class BaseController <T extends BaseEntity> {
 		return "Update OK";
 	}
 
+	@RequestMapping(value=ROUTE_DELETE, method=RequestMethod.DELETE)
 	public String deleteItem(@ModelAttribute T item){
 		try {
 			baseCrud.delete(item);
@@ -71,12 +75,14 @@ public abstract class BaseController <T extends BaseEntity> {
 		return "Delete OK";
 	}
 
+	@RequestMapping(value=ROUTE_SHOW, method=RequestMethod.GET)
 	public T getItem(Integer id){
 		T item = null;
 		item = baseCrud.getById(id);
 		return item;
 	}
 
+	@RequestMapping(value=ROUTE_LIST, method=RequestMethod.GET)
 	public List<T> getItems(){
 		List<T> items = null;
 		items = (List<T>) baseCrud.getAll();

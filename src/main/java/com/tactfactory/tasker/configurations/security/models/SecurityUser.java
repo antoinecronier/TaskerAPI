@@ -11,9 +11,9 @@ import javax.persistence.Table;
 
 /**
  * To realy enable security use thoses command line under mysql
- * insert into security_user VALUES(1,1,"admin","admin");
- * insert into security_role VALUES(1,"admin");
- * insert into users_securityroles VALUES (1,1);
+insert into security_user VALUES(1,1,"admin","admin");
+insert into security_role VALUES(1,"admin");
+insert into users_securityroles VALUES (1,1);
  * Now connect with admin admin
  * @author tactfactory
  *
